@@ -8,6 +8,10 @@ public class Document {
     Photo photo;
     List<Section> sections = new ArrayList<>();
 
+    Document(String title){
+        this.title = title;
+    }
+
     void setTitle(String title){
         this.title = title;
     }

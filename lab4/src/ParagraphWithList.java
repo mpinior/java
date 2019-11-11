@@ -1,18 +1,19 @@
 import java.io.PrintStream;
 
 public class ParagraphWithList extends Paragraph{
-    UnorderedList list;
+    UnorderedList list = new UnorderedList();
 
     ParagraphWithList(){}
 
-    ParagraphWithList(String text, UnorderedList lista){
-        this.content = text;
-        this.list = lista;
+    ParagraphWithList(String text){
+        super.content = text;
     }
 
-    void setContent(String newText, UnorderedList newList){
+    void addItemToList(ListItem element){
+        this.list.addItem(element);
+    }
+    void setContent(String newText){
         this.content = newText;
-        this.list = newList;
     }
 
     void writeHTML(PrintStream out){
