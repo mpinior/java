@@ -6,8 +6,7 @@ public class Variable extends Node {
         this.name = name;
     }
     void setValue(double d){
-        this.sign = value<0?-1:1;
-        this.value = value<0?-value:value;
+        value = d;
     }
 
 
@@ -22,5 +21,6 @@ public class Variable extends Node {
         String sgn=sign<0?"-":"";
         return sgn+name;
     }
+
 
 }

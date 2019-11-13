@@ -11,7 +11,6 @@ public class Constant extends Node {
         this.value = value<0?-value:value;
     }
 
-
     @Override
     double evaluate() {
         return sign*value;

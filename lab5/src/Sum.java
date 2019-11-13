@@ -47,7 +47,7 @@ public class Sum extends Node {
            b.append(this.args.get(i).toString());
            b.append("+");
         }
-        b.append(this.args.get(getArgumentsCount()).toString());
+        b.append(this.args.get(getArgumentsCount()-1).toString());
         if(sign<0)b.append(")");
         return b.toString();
     }

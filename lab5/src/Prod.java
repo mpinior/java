@@ -52,7 +52,7 @@ public class Prod extends Node {
             b.append(this.args.get(i).toString());
             b.append("*");
         }
-        b.append(this.args.get(getArgumentsCount()).toString());
+        b.append(this.args.get(getArgumentsCount()-1).toString());
         return b.toString();
     }
 
