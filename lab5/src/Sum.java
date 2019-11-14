@@ -53,4 +53,21 @@ public class Sum extends Node {
     }
 
 
+    Node diff(Variable var) {
+        Sum r = new Sum();
+        for(Node n:args){
+            if(!n.diff(var).isZero()){
+                r.add(n.diff(var));
+            }
+        }
+        return r;
+    }
+    boolean isZero(){
+        for (int i=0; i<getArgumentsCount(); i++){
+            if (!this.args.get(i).isZero()){
+                return false;
+            }
+        }
+        return true;
+    }
 }

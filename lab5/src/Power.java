@@ -33,4 +33,16 @@ public class Power extends Node {
         return b.toString();
     }
 
+    @Override
+    Node diff(Variable var) {
+        Prod r =  new Prod(sign*p,new Power(arg,p-1));
+        r.mul(arg.diff(var));
+        return r;
+    }
+    boolean isZero(){
+        if (arg.isZero()){
+            return true;
+        }
+        return false;
+    }
 }
