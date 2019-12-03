@@ -78,4 +78,17 @@ public class AdminUnitList{
             au.population = au.area * au.density;
         }
     }
+
+
+    AdminUnitList sortInplaceByName(){
+        class Comparator<AdminUnit>{
+            Comparator<AdminUnit> comparator = new Comparator<>();
+
+            int sort(Comparator<AdminUnit> comparator){
+
+            }
+        }
+
+        return ;
+    }
 }
