@@ -26,7 +26,7 @@ public class AdminUnitList{
             AdminUnit tmp = units.get(i);
             if(adminUnitLongMap.get(tmp) != null)tmp.parent=longAdminUnitMap.get(adminUnitLongMap.get(tmp));
             else tmp.parent=null;
-
+            if(units.get(i).parent != null)units.get(i).parent.children.add(units.get(i));
         }
     }
 
