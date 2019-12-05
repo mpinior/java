@@ -14,12 +14,26 @@ public class AdminUnitList{
         while(reader.next()){
             AdminUnit unit = new AdminUnit();
             longAdminUnitMap.put(reader.getLong("id"), unit);
-            adminUnitLongMap.put(unit, reader.getLong("parent"));
+            if (!reader.isMissing("parent")){
+                adminUnitLongMap.put(unit, reader.getLong("parent"));
+            }
             unit.name = reader.get("name");
             unit.adminLevel = !reader.isMissing("admin_level")?reader.getInt("admin_level"):0;
             unit.population = !reader.isMissing("population")?reader.getDouble("population") : 0;
             unit.area = !reader.isMissing("area")?reader.getDouble("area"):0;
             unit.density = !reader.isMissing("density")?reader.getDouble("density") : 0;
+            double x1 = !reader.isMissing("x1")?reader.getDouble("x1"):0;
+            double y1 = !reader.isMissing("y1")?reader.getDouble("y1"):0;
+            double x2 = !reader.isMissing("x2")?reader.getDouble("x2"):0;
+            double y2 = !reader.isMissing("y2")?reader.getDouble("y2"):0;
+            double x3 = !reader.isMissing("x3")?reader.getDouble("x3"):0;
+            double y3 = !reader.isMissing("y3")?reader.getDouble("y3"):0;
+            double x4 = !reader.isMissing("x4")?reader.getDouble("x4"):0;
+            double y4 = !reader.isMissing("y4")?reader.getDouble("y4"):0;
+            unit.bbox.addPoint(x1,y1);
+            unit.bbox.addPoint(x2,y2);
+            unit.bbox.addPoint(x3,y3);
+            unit.bbox.addPoint(x4,y4);
             units.add(unit);
         }
         for (int i = 0; i < units.size(); i++) {
@@ -39,6 +53,7 @@ public class AdminUnitList{
     void list(PrintStream out,int offset, int limit ){
         for(int i=offset; i<limit; i++){
             out.println(units.get(i).toString());
+
         }
     }
 
@@ -79,16 +94,35 @@ public class AdminUnitList{
         }
     }
 
-
-    AdminUnitList sortInplaceByName(){
-        class Comparator<AdminUnit>{
-            Comparator<AdminUnit> comparator = new Comparator<>();
-
-            int sort(Comparator<AdminUnit> comparator){
-
+    AdminUnitList getNeighbors(AdminUnit unit, double maxdistance){
+        AdminUnitList result = new AdminUnitList();
+        for(int i=0; i<this.units.size(); i++){
+            if(unit.name == units.get(i).name){
+                continue;
+            }
+            if(unit.adminLevel==8 && this.units.get(i).adminLevel==8){
+                if(this.units.get(i).bbox.distanceTo(unit.bbox) <= maxdistance){
+                    result.units.add(this.units.get(i));
+                }
+                continue;
+            }
+            if(unit.adminLevel == this.units.get(i).adminLevel && this.units.get(i).bbox.intersects(unit.bbox)){
+                result.units.add(this.units.get(i));
             }
         }
-
-        return ;
+        return result;
     }
+
+
+//    AdminUnitList sortInplaceByName(){
+//        class Comparator<AdminUnit>{
+//            Comparator<AdminUnit> comparator = new Comparator<>();
+//
+//            int sort(Comparator<AdminUnit> comparator){
+//
+//            }
+//        }
+//
+//        return ;
+//    }
 }

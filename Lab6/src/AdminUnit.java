@@ -21,9 +21,9 @@ public class AdminUnit {
             builder.append(density + ", ");
         }
         if (parent != null){
-            builder.append(parent +", ");
+            builder.append(parent.name +", ");
         }
-        builder.append(bbox);
+        builder.append(bbox.toString());
 
         return builder.toString();
     }
