@@ -1,8 +1,5 @@
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AdminUnitList{
     List<AdminUnit> units = new ArrayList<>();
@@ -114,15 +111,15 @@ public class AdminUnitList{
     }
 
 
-//    AdminUnitList sortInplaceByName(){
-//        class Comparator<AdminUnit>{
-//            Comparator<AdminUnit> comparator = new Comparator<>();
-//
-//            int sort(Comparator<AdminUnit> comparator){
-//
-//            }
-//        }
-//
-//        return ;
-//    }
+    AdminUnitList sortInplaceByName(){
+        class SortByName implements Comparator<AdminUnit> {
+            @Override
+            public int compare(AdminUnit unit1, AdminUnit unit2) {
+                return unit1.name.compareTo(unit2.name);
+            }
+        }
+        //AdminUnitList result = new AdminUnitList();
+        units.sort(new SortByName());
+        return this;
+    }
 }
