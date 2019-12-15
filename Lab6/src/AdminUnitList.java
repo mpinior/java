@@ -1,5 +1,6 @@
 import java.io.PrintStream;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class AdminUnitList{
     List<AdminUnit> units = new ArrayList<>();
@@ -114,12 +115,56 @@ public class AdminUnitList{
     AdminUnitList sortInplaceByName(){
         class SortByName implements Comparator<AdminUnit> {
             @Override
-            public int compare(AdminUnit unit1, AdminUnit unit2) {
-                return unit1.name.compareTo(unit2.name);
+            public int compare(AdminUnit u1, AdminUnit u2) {
+                return u1.name.compareTo(u2.name);
             }
         }
-        //AdminUnitList result = new AdminUnitList();
+        AdminUnitList result = new AdminUnitList();
         units.sort(new SortByName());
         return this;
+    }
+    AdminUnitList sortInplaceByArea(){
+        this.units.sort(new Comparator<AdminUnit>() {
+            @Override
+            public int compare(AdminUnit u1, AdminUnit u2) {
+                return Double.compare(u1.area, u2.area);
+            }
+        });
+        return this;
+    }
+    AdminUnitList sortInplaceByPopulation(){
+        this.units.sort((x1,x2)->Double.compare(x1.population,x2.population));
+        return this;
+    }
+    AdminUnitList sortInplace(Comparator<AdminUnit> cmp){
+        this.units.sort(cmp);
+        return this;
+    }
+    AdminUnitList sort(Comparator<AdminUnit> cmp){
+        AdminUnitList result = new AdminUnitList();
+        result.units = new ArrayList<AdminUnit>();
+        for (int i = 0; i < this.units.size(); i++) {
+            result.units.add(this.units.get(i));
+        }
+        return result.sortInplace(cmp);
+    }
+    AdminUnitList filter(Predicate<AdminUnit> pred, int limit){
+        AdminUnitList result = new AdminUnitList();
+        for (int i = 0; i < this.units.size() && result.units.size()<=limit; i++) {
+            if(pred.test(this.units.get(i)))result.units.add(this.units.get(i));
+        }
+        return result;
+    }
+    AdminUnitList filter(Predicate<AdminUnit> pred) {
+        return filter(pred, this.units.size());
+    }
+    AdminUnitList filter(Predicate<AdminUnit> pred, int offset, int limit) {
+        AdminUnitList filter = this.filter(pred, limit);
+        AdminUnitList result = new AdminUnitList();
+        if (offset < 0 || offset > filter.units.size()) throw new RuntimeException("Offset beyond limits");
+        for (int i = offset; i < filter.units.size(); i++) {
+            result.units.add(filter.units.get(i));
+        }
+        return result;
     }
 }
