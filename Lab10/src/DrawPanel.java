@@ -50,6 +50,32 @@ public class DrawPanel extends JPanel {
         shapes.add(new Star(400, 150, 10, 0.3, new Color(132,14,140, 40),new Color(132,14,138)));
         shapes.add(new Star(570, 440, 10, 0.35, new Color(132,14,140, 40),new Color(132,14,138)));
         shapes.add(new Star(455, 72, 10, 0.7, new Color(190,162,0),new Color(184,162,0)));
+        shapes.add(new Snow(100,100,0.07));
+        shapes.add(new Snow(150,200,0.08));
+        shapes.add(new Snow(800,100,0.07));
+        shapes.add(new Snow(820,160,0.06));
+        shapes.add(new Snow(920,400,0.08));
+        shapes.add(new Snow(730,40,0.08));
+        shapes.add(new Snow(50,500,0.08));
+        shapes.add(new Snow(90,420,0.06));
+        shapes.add(new Snow(42,340,0.08));
+        shapes.add(new Snow(180,270,0.06));
+        shapes.add(new Snow(210,422,0.08));
+        shapes.add(new Snow(850,342,0.06));
+        shapes.add(new Snow(780,240,0.08));
+        shapes.add(new Snow(670,230,0.07));
+        shapes.add(new Snow(888,500,0.08));
+        shapes.add(new Snow(740,368,0.06));
+        shapes.add(new Snow(678,112,0.07));
+        shapes.add(new Snow(223,128,0.06));
+        shapes.add(new Snow(290,180,0.08));
+        shapes.add(new Snow(340,125,0.06));
+        shapes.add(new Snow(932,90,0.08));
+        shapes.add(new Snow(924,254,0.07));
+        shapes.add(new Snow(188,365,0.07));
+        shapes.add(new Snow(266,277,0.08));
+        shapes.add(new Snow(80,270,0.06));
+        shapes.add(new Snow(810,450,0.06));
     }
 
     public void paintComponent(Graphics g){
