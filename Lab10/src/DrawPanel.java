@@ -76,6 +76,7 @@ public class DrawPanel extends JPanel {
         shapes.add(new Snow(266,277,0.08));
         shapes.add(new Snow(80,270,0.06));
         shapes.add(new Snow(810,450,0.06));
+        shapes.add(new Light(0,20,1));
     }
 
     public void paintComponent(Graphics g){
